@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Welcome Screen (Visible when not logged in) -->
+        <div id="welcome-screen">
+            <div class="header">
+                <h1>🏋️ Fitness Tracker App</h1>
+                <p>Track Your Workouts & Progress</p>
+            </div>
+
+            <div class="box">
+                <div class="box-header">
+                    <span class="icon">📝</span>
+                    <h2>Welcome Menu</h2>
+                </div>
+                
+                <div class="menu">
+                    <div class="menu-item">
+                        <h3>Login</h3>
+                        <p>Access your fitness account</p>
+                        <a href="#" class="btn" id="login-btn">Login</a>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <h3>Register</h3>
+                        <p>Create a new account</p>
+                        <a href="#" class="btn btn-secondary" id="register-btn">Register</a>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <h3>Reset Password</h3>
+                        <p>Forgot your password?</p>
+                        <a href="#" class="btn btn-warning" id="reset-btn">Reset</a>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <h3>Leaderboard</h3>
+                        <p>See top performers</p>
+                        <a href="#" class="btn" id="leaderboard-btn">View</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Login Form -->
+        <div id="login-form" class="box hidden">
+            <div class="box-header">
+                <span class="icon">🔑</span>
+                <h2>Login</h2>
+            </div>
+            
+            <form class="auth-form">
+                <div class="form-group">
+                    <label for="login-username">Username</label>
+                    <input type="text" id="login-username" class="form-control" placeholder="Enter your username">
+                </div>
+                
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" class="form-control" placeholder="Enter your password">
+                </div>
+                
+                <button type="button" class="btn" id="login-submit">Login</button>
+                <button type="button" class="btn btn-danger" id="login-cancel">Cancel</button>
+            </form>
+        </div>
+
+        <!-- Register Form -->
+        <div id="register-form" class="box hidden">
+            <div class="box-header">
+                <span class="icon">📋</span>
+                <h2>Register</h2>
+            </div>
+            
+            <form class="auth-form">
+                <div class="form-group">
+                    <label for="register-username">Username</label>
+                    <input type="text" id="register-username" class="form-control" placeholder="Choose a username">
+                </div>
+                
+                <div class="form-group">
+                    <label for="register-password">Password</label>
+                    <input type="password" id="register-password" class="form-control" placeholder="Choose a password">
+                </div>
+                
+                <div class="form-group">
+                    <label for="register-background">Fitness Background</label>
+                    <input type="text" id="register-background" class="form-control" placeholder="Describe your fitness background">
+                </div>
+                
+                <button type="button" class="btn btn-secondary" id="register-submit">Register</button>
+                <button type="button" class="btn btn-danger" id="register-cancel">Cancel</button>
+            </form>
+        </div>
+
+        <!-- Reset Password Form -->
+        <div id="reset-form" class="box hidden">
+            <div class="box-header">
+                <span class="icon">🔄</span>
+                <h2>Reset Password</h2>
+            </div>
+            
+            <form class="auth-form">
+                <div class="form-group">
+                    <label for="reset-username">Username</label>
+                    <input type="text" id="reset-username" class="form-control" placeholder="Enter your username">
+                </div>
+                
+                <div class="form-group">
+                    <label for="reset-new-password">New Password</label>
+                    <input type="password" id="reset-new-password" class="form-control" placeholder="Enter new password">
+                </div>
+                
+                <button type="button" class="btn btn-warning" id="reset-submit">Reset Password</button>
+                <button type="button" class="btn btn-danger" id="reset-cancel">Cancel</button>
+            </form>
+        </div>
+
+        <!-- Leaderboard -->
+        <div id="leaderboard" class="box hidden">
+            <div class="box-header">
+                <span class="icon">🏆</span>
+                <h2>Leaderboard</h2>
+            </div>
+            
+            <table class="leaderboard">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>User</th>
+                        <th>Badge</th>
+                        <th>Points</th>
+                        <th>Streak</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>🥇 1</td>
+                        <td>Waqar</td>
+                        <td>150</td>
+                        <td>14</td>
+                        <td><span class="badge badge-legend">🌟 Legend</span></td>
+                    </tr>
+                    <tr>
+                        <td>🥈 2</td>
+                        <td>Anas</td>
+                        <td>120</td>
+                        <td>12</td>
+                        <td><span class="badge badge-elite">🔥 Elite</span></td>
+                    </tr>
+                    <tr>
+                        <td>🥉 3</td>
+                        <td>Tuheed</td>
+                        <td>90</td>
+                        <td>7</td>
+                        <td><span class="badge badge-elite">🔥 Elite</span></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>John</td>
+                        <td>65</td>
+                        <td>5</td>
+                        <td><span class="badge badge-advanced">💪 Pro</span></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Sarah</td>
+                        <td>40</td>
+                        <td>3</td>
+                        <td><span class="badge badge-intermediate">🏅 Intermediate</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <button type="button" class="btn" id="leaderboard-back" style="margin-top: 20px;">Back to Menu</button>
+        </div>
+
+        <!-- Main App (Visible when logged in) -->
+        <div id="main-app" class="hidden">
+            <div class="header">
+                <h1>🏋️ Fitness Tracker App</h1>
+                <p>Welcome back, <span id="logged-in-username">User</span>!</p>
+            </div>
+
+            <!-- Main Menu -->
+            <div class="box">
+                <div class="box-header">
+                    <span class="icon">🏋️</span>
+                    <h2>Main Menu</h2>
+                </div>
+                
+                <div class="menu">
+                    <div class="menu-item">
+                        <h3>View Profile</h3>
+                        <p>See your fitness stats</p>
+                        <a href="#" class="btn" id="profile-btn">View</a>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <h3>Update Profile</h3>
+                        <p>Edit your information</p>
+                        <a href="#" class="btn" id="update-profile-btn">Update</a>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <h3>Start Workout</h3>
+                        <p>Begin a new session</p>
+                        <a href="#" class="btn btn-secondary" id="workout-btn">Start</a>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <h3>Exercise Library</h3>
+                        <p>Browse exercises</p>
+                        <a href="#" class="btn" id="library-btn">View</a>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <h3>Workout History</h3>
+                        <p>Past sessions</p>
+                        <a href="#" class="btn" id="history-btn">View</a>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <h3>Goals</h3>
+                        <p>Your fitness goals</p>
+                        <a href="#" class="btn" id="goals-btn">View</a>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <h3>Personal Bests</h3>
+                        <p>Your records</p>
+                        <a href="#" class="btn" id="bests-btn">View</a>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <h3>Leaderboard</h3>
+                        <p>Top performers</p>
+                        <a href="#" class="btn" id="app-leaderboard-btn">View</a>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <h3>Change Password</h3>
+                        <p>Update credentials</p>
+                        <a href="#" class="btn btn-warning" id="change-password-btn">Change</a>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <h3>Logout</h3>
+                        <p>Exit your account</p>
+                        <a href="#" class="btn btn-danger" id="logout-btn">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile View -->
+        <div id="profile-view" class="box hidden">
+            <div class="box-header">
+                <span class="icon">👨</span>
+                <h2>User Profile</h2>
+            </div>
+            
+            <div class="profile">
+                <div>
+                    <img src="https://via.placeholder.com/300" alt="Profile" class="profile-img">
+                </div>
+                
+                <div class="profile-info">
+                    <div class="profile-stat">
+                        <h4>Username</h4>
+                        <p id="profile-username">Waqar</p>
+                    </div>
+                    
+                    <div class="profile-stat">
+                        <h4>Background</h4>
+                        <p id="profile-background">Athlete</p>
+                    </div>
+                    
+                    <div class="profile-stat">
+                        <h4>Fitness Level</h4>
+                        <p id="profile-level">Advanced</p>
+                    </div>
+                    
+                    <div class="profile-stat">
+                        <h4>Current Streak</h4>
+                        <p id="profile-streak">14 days</p>
+                    </div>
+                    
+                    <div class="profile-stat">
+                        <h4>Max Streak</h4>
+                        <p id="profile-max-streak">21 days</p>
+                    </div>
+                    
+                    <div class="profile-stat">
+                        <h4>Badge</h4>
+                        <p><span class="badge badge-legend" id="profile-badge">🌟 Legend</span></p>
+                    </div>
+                    
+                    <div class="profile-stat">
+                        <h4>Points</h4>
+                        <p id="profile-points">150</p>
+                    </div>
+                    
+                    <div class="profile-stat">
+                        <h4>Login Streak</h4>
+                        <p id="profile-login-streak">7 days</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="profile-info" style="margin-top: 20px;">
+                <div class="profile-stat">
+                    <h4>Weight</h4>
+                    <p id="profile-weight">75 kg</p>
+                </div>
+                
+                <div class="profile-stat">
+                    <h4>Height</h4>
+                    <p id="profile-height">1.78 m</p>
+                </div>
+                
+                <div class="profile-stat">
+                    <h4>BMI</h4>
+                    <p id="profile-bmi">23.7 (Normal)</p>
+                </div>
+                
+                <div class="profile-stat">
+                    <h4>Total Calories</h4>
+                    <p id="profile-calories">12,450 kcal</p>
+                </div>
+                
+                <div class="profile-stat">
+                    <h4>CO₂ Saved</h4>
+                    <p id="profile-co2">3,735 g</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <h3>🔓 Unlocked Exercises</h3>
+                <p id="profile-exercises">Push-ups, Squats, Running, Cycling, Jumping Jacks, Plank, Mountain Climbers</p>
+            </div>
+            
+            <button type="button" class="btn" id="profile-back" style="margin-top: 20px;">Back to Menu</button>
+        </div>
+
+        <!-- Update Profile -->
+        <div id="update-profile" class="box hidden">
+            <div class="box-header">
+                <span class="icon">✏️</span>
+                <h2>Update Profile</h2>
+            </div>
+            
+            <div class="menu">
+                <div class="menu-item">
+                    <h3>Update Weight</h3>
+                    <p>Current: 75 kg</p>
+                    <input type="number" id="update-weight" class="form-control" placeholder="Enter new weight (kg)" style="margin: 10px 0;">
+                    <button type="button" class="btn">Update</button>
+                </div>
+                
+                <div class="menu-item">
+                    <h3>Update Height</h3>
+                    <p>Current: 1.78 m</p>
+                    <input type="number" id="update-height" class="form-control" placeholder="Enter new height (m)" style="margin: 10px 0;">
+                    <button type="button" class="btn">Update</button>
+                </div>
+                
+                <div class="menu-item">
+                    <h3>Update Age</h3>
+                    <p>Current: 28</p>
+                    <input type="number" id="update-age" class="form-control" placeholder="Enter new age" style="margin: 10px 0;">
+                    <button type="button" class="btn">Update</button>
+                </div>
+                
+                <div class="menu-item">
+                    <h3>Update Background</h3>
+                    <p>Current: Athlete</p>
+                    <input type="text" id="update-background" class="form-control" placeholder="Enter new background" style="margin: 10px 0;">
+                    <button type="button" class="btn">Update</button>
+                </div>
+            </div>
+            
+            <button type="button" class="btn" id="update-profile-back" style="margin-top: 20px;">Back to Menu</button>
+        </div>
+
+        <!-- Start Workout -->
+        <div id="start-workout" class="box hidden">
+            <div class="box-header">
+                <span class="icon">🏃</span>
+                <h2>Start Workout</h2>
+            </div>
+            
+            <div class="menu">
+                <div class="menu-item">
+                    <h3>Individual Exercise</h3>
+                    <p>Start a single exercise</p>
+                    <a href="#" class="btn" id="individual-exercise-btn">Start</a>
+                </div>
+                
+                <div class="menu-item">
+                    <h3>Workout Plan</h3>
+                    <p>Follow a complete plan</p>
+                    <a href="#" class="btn btn-secondary" id="workout-plan-btn">Start</a>
+                </div>
+            </div>
+            
+            <button type="button" class="btn" id="start-workout-back" style="margin-top: 20px;">Back to Menu</button>
+        </div>
+
+        <!-- Individual Exercise -->
+        <div id="individual-exercise" class="box hidden">
+            <div class="box-header">
+                <span class="icon">💪</span>
+                <h2>Individual Exercise</h2>
+            </div>
+            
+            <div class="notification notification-warning">
+                <strong>🔒 Locked Exercises:</strong> You need more points to unlock these exercises
+            </div>
+            
+            <h3 style="margin: 20px 0 10px;">🔓 Your Unlocked Exercises:</h3>
+            
+            <div class="menu">
+                <div class="menu-item">
+                    <h3>Push-ups</h3>
+                    <p>Upper body strength</p>
+                    <a href="#" class="btn">Select</a>
+                </div>
+                
+                <div class="menu-item">
+                    <h3>Squats</h3>
+                    <p>Lower body strength</p>
+                    <a href="#" class="btn">Select</a>
+                </div>
+                
+                <div class="menu-item">
+                    <h3>Running</h3>
+                    <p>Cardiovascular</p>
+                    <a href="#" class="btn">Select</a>
+                </div>
+            </div>
+            
+            <button type="button" class="btn" id="individual-exercise-back" style="margin-top: 20px;">Back</button>
+        </div>
+
+        <!-- Exercise Detail -->
+        <div id="exercise-detail" class="box hidden">
+            <div class="box-header">
+                <span class="icon">🏋️</span>
+                <h2>Push-ups</h2>
+            </div>
+            
+            <div class="exercise">
+                <div>
+                    <img src="https://via.placeholder.com/300x200" alt="Push-ups" class="exercise-img">
+                </div>
+                
+                <div>
+                    <p>Upper body strength exercise</p>
+                    
+                    <div style="margin: 15px 0;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span>🔥 Calories: 8 kcal/min</span>
+                            <span>💪 Difficulty: 5/10</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>🌱 CO₂ Saved: 2.5 g/min</span>
+                            <span>🎯 Points Reward: 5</span>
+                        </div>
+                    </div>
+                    
+                    <h3>Muscle Group: Chest, Triceps, Shoulders</h3>
+                    
+                    <div class="exercise-steps">
+                        <h4>Steps:</h4>
+                        <ol>
+                            <li>Start in a plank position with hands slightly wider than shoulder-width.</li>
+                            <li>Lower your body until your chest nearly touches the floor.</li>
+                            <li>Push yourself back up to the starting position.</li>
+                            <li>Keep your core tight and back straight throughout the movement.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group" style="margin: 20px 0;">
+                <label for="exercise-intensity">Intensity (1-10):</label>
+                <input type="number" id="exercise-intensity" class="form-control" min="1" max="10" value="5">
+            </div>
+            
+            <button type="button" class="btn btn-secondary" id="start-exercise-btn">Start Exercise</button>
+            <button type="button" class="btn" id="exercise-detail-back">Back</button>
+        </div>
+
+        <!-- Active Workout Session -->
+        <div id="active-workout" class="box hidden">
+            <div class="box-header">
+                <span class="icon">🏃</span>
+                <h2>Workout in Progress</h2>
+            </div>
+            
+            <div class="workout-session">
+                <h3>Push-ups</h3>
+                <p>Intensity: 5/10</p>
+                <p>Start Time: 14:30:45</p>
+                
+                <div class="quote">
+                    "The only bad workout is the one that didn't happen."
+                </div>
+                
+                <h4 style="margin-top: 20px;">Follow these steps:</h4>
+                <ol>
+                    <li>Start in a plank position with hands slightly wider than shoulder-width.</li>
+                    <li>Lower your body until your chest nearly touches the floor.</li>
+                    <li>Push yourself back up to the starting position.</li>
+                    <li>Keep your core tight and back straight throughout the movement.</li>
+                </ol>
+                
+                <div class="workout-timer">
+                    00:05:23
+                </div>
+                
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 45%;">45% Complete</div>
+                </div>
+            </div>
+            
+            <button type="button" class="btn btn-danger" id="end-workout-btn">End Workout</button>
+        </div>
+
+        <!-- End Workout -->
+        <div id="end-workout" class="box hidden">
+            <div class="box-header">
+                <span class="icon">🏆</span>
+                <h2>Workout Summary</h2>
+            </div>
+            
+            <div class="workout-session">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <h3>Great job! You've completed your workout!</h3>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 20px;">
+                    <div class="profile-stat">
+                        <h4>Duration</h4>
+                        <p>15 minutes</p>
+                    </div>
+                    
+                    <div class="profile-stat">
+                        <h4>Calories Burned</h4>
+                        <p>120 kcal</p>
+                    </div>
+                    
+                    <div class="profile-stat">
+                        <h4>CO₂ Saved</h4>
+                        <p>37.5 g</p>
+                    </div>
+                    
+                    <div class="profile-stat">
+                        <h4>Current Streak</h4>
+                        <p>15 days</p>
+                    </div>
+                    
+                    <div class="profile-stat">
+                        <h4>Points Earned</h4>
+                        <p>8</p>
+                    </div>
+                    
+                    <div class="profile-stat">
+                        <h4>Total Points</h4>
+                        <p>158</p>
+                    </div>
+                </div>
+                
+                <div class="notification notification-success">
+                    <strong>🎉 Achievement Unlocked!</strong> You've reached a new personal best for Push-ups: 15 minutes!
+                </div>
+            </div>
+            
+            <button type="button" class="btn" id="end-workout-back">Back to Menu</button>
+        </div>
+
+        <!-- Workout Plan -->
+        <div id="workout-plan" class="box hidden">
+            <div class="box-header">
+                <span class="icon">📋</span>
+                <h2>Generate Workout Plan</h2>
+            </div>
+            
+            <div class="form-group">
+                <label for="plan-duration">Duration (minutes):</label>
+                <input type="number" id="plan-duration" class="form-control" value="30">
+            </div>
+            
+            <div class="form-group">
+                <label for="plan-focus">Focus Area:</label>
+                <select id="plan-focus" class="form-control">
+                    <option>Full Body</option>
+                    <option>Cardio</option>
+                    <option>Chest</option>
+                    <option>Legs</option>
+                    <option>Core</option>
+                </select>
+            </div>
+            
+            <button type="button" class="btn btn-secondary" id="generate-plan-btn">Generate Plan</button>
+            <button type="button" class="btn" id="workout-plan-back">Back</button>
+        </div>
+
+        <!-- Generated Plan -->
+        <div id="generated-plan" class="box hidden">
+            <div class="box-header">
+                <span class="icon">🏋️</span>
+                <h2>Full Body Workout</h2>
+            </div>
+            
+            <p>A 30-minute Intermediate workout focusing on Full Body</p>
+            
+            <div style="margin: 20px 0;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                    <span>Difficulty: Intermediate</span>
+                    <span>Total Duration: 30 minutes</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <span>Calories Burned: ~240 kcal</span>
+                </div>
+            </div>
+            
+            <h3>Exercise Plan:</h3>
+            <ol style="margin: 15px 0 25px;">
+                <li>Push-ups - 8 minutes</li>
+                <li>Squats - 8 minutes</li>
+                <li>Running - 7 minutes</li>
+                <li>Plank - 7 minutes</li>
+            </ol>
+            
+            <div class="form-group">
+                <label for="plan-intensity">Intensity (1-10):</label>
+                <input type="number" id="plan-intensity" class="form-control" min="1" max="10" value="5">
+            </div>
+            
+            <button type="button" class="btn btn-secondary" id="start-plan-btn">Start Plan</button>
+            <button type="button" class="btn" id="generated-plan-back">Back</button>
+        </div>
+
+        <!-- Exercise Library -->
+        <div id="exercise-library" class="box hidden">
+            <div class="box-header">
+                <span class="icon">📚</span>
+                <h2>Exercise Library</h2>
+            </div>
+            
+            <div class="menu">
+                <div class="menu-item">
+                    <h3>View All Exercises</h3>
+                    <p>Browse all available exercises</p>
+                    <a href="#" class="btn" id="all-exercises-btn">View</a>
+                </div>
+                
+                <div class="menu-item">
+                    <h3>Search by Muscle Group</h3>
+                    <p>Find exercises for specific muscles</p>
+                    <a href="#" class="btn" id="muscle-group-btn">Search</a>
+                </div>
+                
+                <div class="menu-item">
+                    <h3>Filter by Difficulty</h3>
+                                        <p>Find exercises by difficulty level</p>
+                    <a href="#" class="btn" id="difficulty-btn">Filter</a>
+                </div>
+            </div>
+            
+            <button type="button" class="btn" id="exercise-library-back" style="margin-top: 20px;">Back to Menu</button>
+        </div>
+
+        <!-- All Exercises -->
+        <div id="all-exercises" class="box hidden">
+            <div class="box-header">
+                <span class="icon">💪</span>
+                <h2>All Exercises</h2>
+            </div>
+            
+            <div class="menu">
+                <div class="menu-item">
+                    <h3>Push-ups</h3>
+                    <p>Upper body strength</p>
+                    <span class="badge badge-intermediate">Intermediate</span>
+                    <a href="#" class="btn" style="margin-top: 10px;">View</a>
+                </div>
+                
+                <div class="menu-item">
+                    <h3>Squats</h3>
+                    <p>Lower body strength</p>
+                    <span class="badge badge-beginner">Beginner</span>
+                    <a href="#" class="btn" style="margin-top: 10px;">View</a>
+                </div>
+                
+                <div class="menu-item">
+                    <h3>Running</h3>
+                    <p>Cardiovascular</p>
+                    <span class="badge badge-beginner">Beginner</span>
+                    <a href="#" class="btn" style="margin-top: 10px;">View</a>
+                </div>
+                
+                <div class="menu-item">
+                    <h3>Plank</h3>
+                    <p>Core strength</p>
+                    <span class="badge badge-intermediate">Intermediate</span>
+                    <a href="#" class="btn" style="margin-top: 10px;">View</a>
+                </div>
+                
+                <div class="menu-item">
+                    <h3>Pull-ups</h3>
+                    <p>Upper body strength</p>
+                    <span class="badge badge-advanced">Advanced</span>
+                    <a href="#" class="btn" style="margin-top: 10px;">View</a>
+                </div>
+                
+                <div class="menu-item">
+                    <h3>Burpees</h3>
+                    <p>Full body</p>
+                    <span class="badge badge-advanced">Advanced</span>
+                    <a href="#" class="btn" style="margin-top: 10px;">View</a>
+                </div>
+            </div>
+            
+            <button type="button" class="btn" id="all-exercises-back" style="margin-top: 20px;">Back</button>
+        </div>
+
+        <!-- Workout History -->
+        <div id="workout-history" class="box hidden">
+            <div class="box-header">
+                <span class="icon">📅</span>
+                <h2>Workout History</h2>
+            </div>
+            
+            <table class="leaderboard">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Exercise</th>
+                        <th>Duration</th>
+                        <th>Calories</th>
+                        <th>Points</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2023-05-15</td>
+                        <td>Push-ups</td>
+                        <td>15 min</td>
+                        <td>120 kcal</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <td>2023-05-14</td>
+                        <td>Running</td>
+                        <td>20 min</td>
+                        <td>180 kcal</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td>2023-05-13</td>
+                        <td>Squats</td>
+                        <td>10 min</td>
+                        <td>80 kcal</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>2023-05-12</td>
+                        <td>Plank</td>
+                        <td>5 min</td>
+                        <td>40 kcal</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>2023-05-11</td>
+                        <td>Push-ups</td>
+                        <td>12 min</td>
+                        <td>96 kcal</td>
+                        <td>6</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <button type="button" class="btn" id="workout-history-back" style="margin-top: 20px;">Back to Menu</button>
+        </div>
+
+        <!-- Goals -->
+        <div id="goals" class="box hidden">
+            <div class="box-header">
+                <span class="icon">🎯</span>
+                <h2>Your Goals</h2>
+            </div>
+            
+            <div class="menu">
+                <div class="menu-item">
+                    <h3>Current Goals</h3>
+                    <p>View your active goals</p>
+                    <a href="#" class="btn" id="current-goals-btn">View</a>
+                </div>
+                
+                <div class="menu-item">
+                    <h3>Set New Goal</h3>
+                    <p>Create a new fitness goal</p>
+                    <a href="#" class="btn btn-secondary" id="set-goal-btn">Create</a>
+                </div>
+                
+                <div class="menu-item">
+                    <h3>Completed Goals</h3>
+                    <p>View achieved goals</p>
+                    <a href="#" class="btn" id="completed-goals-btn">View</a>
+                </div>
+            </div>
+            
+            <button type="button" class="btn" id="goals-back" style="margin-top: 20px;">Back to Menu</button>
+        </div>
+
+        <!-- Current Goals -->
+        <div id="current-goals" class="box hidden">
+            <div class="box-header">
+                <span class="icon">🏆</span>
+                <h2>Current Goals</h2>
+            </div>
+            
+            <div class="menu">
+                <div class="menu-item">
+                    <h3>30 Push-ups in a Row</h3>
+                    <p>Current: 22/30</p>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 73%;">73%</div>
+                    </div>
+                    <p>Due: 2023-06-15</p>
+                    <a href="#" class="btn btn-warning" style="margin-top: 10px;">Update</a>
+                </div>
+                
+                <div class="menu-item">
+                    <h3>Run 5km in 25 Minutes</h3>
+                    <p>Current: 28 minutes</p>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 45%;">45%</div>
+                    </div>
+                    <p>Due: 2023-07-01</p>
+                    <a href="#" class="btn btn-warning" style="margin-top: 10px;">Update</a>
+                </div>
+                
+                <div class="menu-item">
+                    <h3>Exercise 5 Days a Week</h3>
+                    <p>Current: 4/5 days</p>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 80%;">80%</div>
+                    </div>
+                    <p>Weekly goal</p>
+                    <a href="#" class="btn btn-warning" style="margin-top: 10px;">Update</a>
+                </div>
+            </div>
+            
+            <button type="button" class="btn" id="current-goals-back" style="margin-top: 20px;">Back</button>
+        </div>
+
+        <!-- Set New Goal -->
+        <div id="set-goal" class="box hidden">
+            <div class="box-header">
+                <span class="icon">🎯</span>
+                <h2>Set New Goal</h2>
+            </div>
+            
+            <form>
+                <div class="form-group">
+                    <label for="goal-title">Goal Title</label>
+                    <input type="text" id="goal-title" class="form-control" placeholder="e.g., Run 5km in 25 minutes">
+                </div>
+                
+                <div class="form-group">
+                    <label for="goal-description">Description</label>
+                    <textarea id="goal-description" class="form-control" rows="3" placeholder="Describe your goal"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="goal-type">Goal Type</label>
+                    <select id="goal-type" class="form-control">
+                        <option>Exercise Performance</option>
+                        <option>Weight Loss</option>
+                        <option>Strength Gain</option>
+                        <option>Endurance</option>
+                        <option>Consistency</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="goal-target">Target Value</label>
+                    <input type="text" id="goal-target" class="form-control" placeholder="e.g., 30 pushups">
+                </div>
+                
+                <div class="form-group">
+                    <label for="goal-due">Due Date</label>
+                    <input type="date" id="goal-due" class="form-control">
+                </div>
+                
+                <button type="button" class="btn btn-secondary" id="save-goal-btn">Save Goal</button>
+                <button type="button" class="btn" id="set-goal-back">Back</button>
+            </form>
+        </div>
+
+        <!-- Personal Bests -->
+        <div id="personal-bests" class="box hidden">
+            <div class="box-header">
+                <span class="icon">🌟</span>
+                <h2>Personal Bests</h2>
+            </div>
+            
+            <table class="leaderboard">
+                <thead>
+                    <tr>
+                        <th>Exercise</th>
+                        <th>Record</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Push-ups</td>
+                        <td>22 in a row</td>
+                        <td>2023-05-15</td>
+                    </tr>
+                    <tr>
+                        <td>Running</td>
+                        <td>28 min (5km)</td>
+                        <td>2023-05-14</td>
+                    </tr>
+                    <tr>
+                        <td>Squats</td>
+                        <td>50 in a row</td>
+                        <td>2023-05-13</td>
+                    </tr>
+                    <tr>
+                        <td>Plank</td>
+                        <td>3 minutes</td>
+                        <td>2023-05-12</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <button type="button" class="btn" id="personal-bests-back" style="margin-top: 20px;">Back to Menu</button>
+        </div>
+
+        <!-- Change Password -->
+        <div id="change-password" class="box hidden">
+            <div class="box-header">
+                <span class="icon">🔒</span>
+                <h2>Change Password</h2>
+            </div>
+            
+            <form class="auth-form">
+                <div class="form-group">
+                    <label for="current-password">Current Password</label>
+                    <input type="password" id="current-password" class="form-control" placeholder="Enter current password">
+                </div>
+                
+                <div class="form-group">
+                    <label for="new-password">New Password</label>
+                    <input type="password" id="new-password" class="form-control" placeholder="Enter new password">
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirm-password">Confirm New Password</label>
+                    <input type="password" id="confirm-password" class="form-control" placeholder="Confirm new password">
+                </div>
+                
+                <button type="button" class="btn btn-warning" id="change-password-submit">Change Password</button>
+                <button type="button" class="btn" id="change-password-back">Back to Menu</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
